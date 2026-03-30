@@ -1,6 +1,6 @@
 package com.practicos.ejercicio2.models;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class Paciente {
 
@@ -8,12 +8,12 @@ public class Paciente {
     private Integer dni;
     private String nombre;
     private String apellido;
-    private Date fechaNacimiento;
+    private LocalDate fechaNacimiento;
 
     public Paciente() {
     }
 
-    public Paciente(Long id, Integer dni, String nombre, String apellido, Date fechaNacimiento) {
+    public Paciente(Long id, Integer dni, String nombre, String apellido, LocalDate fechaNacimiento) {
         this.id = id;
         this.dni = dni;
         this.nombre = nombre;
@@ -53,11 +53,11 @@ public class Paciente {
         this.apellido = apellido;
     }
 
-    public Date getFechaNacimiento() {
+    public LocalDate getFechaNacimiento() {
         return fechaNacimiento;
     }
 
-    public void setFechaNacimiento(Date fechaNacimiento) {
+    public void setFechaNacimiento(LocalDate fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
     }
 }
