@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.time.Period;
 import java.util.ArrayList;
 import java.util.List;
 import java.time.LocalDate;
@@ -14,7 +15,7 @@ import java.time.LocalDate;
 public class PacienteController {
 
     private List<Paciente> pacientes = new ArrayList<>();
-    private List<Paciente> pacientesMenores = new ArrayList<>();
+    LocalDate fechaActual = LocalDate.now();
 
     @PostMapping
     public Paciente agregarPaciente(@RequestBody Paciente paciente){
@@ -27,13 +28,22 @@ public class PacienteController {
         return pacientes;
     }
 
-    //Agregar función que distinga pacientes menores de edad aquí-->
-
-    //<-- <-- <-- <-- <-- <-- <-- <-- <-- <-- <-- <-- <-- <-- <-- <-
-
     @GetMapping("/menores")
     public List<Paciente> obtenerPacientesMenores(){
-        return pacientesMenores;
+        return obtenerMenores();
+    }
+
+    private List<Paciente> obtenerMenores(){
+        List<Paciente> menores = new ArrayList<>();
+
+        for (Paciente paciente : pacientes) {
+            int aniosPaciente = Period.between(paciente.getFechaNacimiento(),fechaActual).getYears();
+            if (aniosPaciente < 18){
+                menores.add(paciente);
+            }
+        }
+
+        return menores;
     }
 
     private void validarPaciente(Paciente paciente){
