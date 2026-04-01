@@ -16,10 +16,15 @@ public class PacienteController {
 
     private List<Paciente> pacientes = new ArrayList<>();
     LocalDate fechaActual = LocalDate.now();
+    Long contador = 1L;
 
     @PostMapping
     public Paciente agregarPaciente(@RequestBody Paciente paciente){
+        paciente.setId(contador);
+
         pacientes.add(paciente);
+        contador += 1;
+
         return paciente;
     }
 
