@@ -20,8 +20,9 @@ public class PacienteController {
 
     @PostMapping
     public Paciente agregarPaciente(@RequestBody Paciente paciente){
-        paciente.setId(contador);
+        validarPaciente(paciente);
 
+        paciente.setId(contador);
         pacientes.add(paciente);
         contador += 1;
 
